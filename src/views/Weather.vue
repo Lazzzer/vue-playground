@@ -2,13 +2,13 @@
 <div :style="hasCityName === false ? 'height: calc(100% - 60px)' : 'height: 100%'">
   <div v-if="hasCityName === false" class="weather flex h-full flex-col justify-center items-center font-sans" >
     <div>
-      <img alt="Vue logo" src="../assets/weather-anim.gif" class="block m-auto h-64 w-auto">
+      <img alt="Weather logo" src="../assets/weather-anim.gif" class="block m-auto h-64 w-auto">
       <h1 class="text-5xl font-black text-teal-700 uppercase">Vue-Weather</h1>
         <form @submit.prevent class="relative w-full max-w-sm">
           <div class=" flex items-center">
             <input v-model="cityName" @keydown.enter.prevent @keyup.enter="onSubmit"
               class="bg-white outline-none focus:border-teal-500 border-2 border-gray-300 rounded-l-lg py-2 px-4 block w-full appearance-none leading-normal text-lg text-teal-800 font-bold" 
-              type="text" placeholder="Tapez le nom de votre ville...">
+              type="text" placeholder="Enter the name of your city...">
             <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 border-2 text-white py-2 px-4 rounded-r-lg text-lg appearance-none outline-none" 
                     type="button" @click="onSubmit">
               <i class="fas fa-search"></i>
@@ -17,8 +17,8 @@
         </form>
         <div v-if="hasError" class="absolute mt-2 error-message text-sm ml-4">
           <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative flex" role="alert">
-            <strong class="font-bold mr-2">Aïe ! </strong>
-            <span class="block sm:inline mr-2">La ville recherchée est introuvable...</span>
+            <strong class="font-bold mr-2">Outch ! </strong>
+            <span class="block sm:inline mr-2">The searched city is not found...</span>
               <svg
                 @click="hasError = false"
                 class="inline fill-current h-6 w-6 text-red-500" 
@@ -30,35 +30,53 @@
     </div>
   </div>
   <div v-else class="h-full bg-gray-600">
-
+    <current-weather :weatherData="this.currentWeatherData"></current-weather>
+    <forecast :forecastData="this.forecastData"></forecast>
   </div>
 </div>
 </template>
 
 <script>
 import axios from 'axios';
+import CurrentWeather from '../components/weather/CurrentWeather.vue';
+import Forecast from '../components/weather/Forecast.vue';
 
 export default {
+  components:{
+    CurrentWeather,
+    Forecast
+  },
   data() {
     return {
       hasCityName: false,
       cityName: '',
-      hasError: false
+      hasError: false,
+      currentWeatherData: {},
+      forecastData: {}
     }
   },
   methods: {
     onSubmit () {
       console.log(this.cityName)
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=5930ff12f2a177a4379b45eb1959f053`)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=5930ff12f2a177a4379b45eb1959f053&units=metric`)
         .then(res => {
-          console.log(res)
-          this.$store.state.minifyNavbar = true; 
-          this.hasCityName = true;
+          console.log(res);
+          this.currentWeatherData = res.data;
         })
         .catch(error => {
           console.log(error);
           this.hasError = true;
         });
+        axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&APPID=5930ff12f2a177a4379b45eb1959f053&units=metric`)
+        .then(res => {
+          console.log(res);
+          this.forecastData = res.data;
+          this.$store.state.minifyNavbar = true; 
+          this.hasCityName = true;
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   },
   destroyed() {
