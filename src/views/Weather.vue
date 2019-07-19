@@ -1,6 +1,6 @@
 <template>
 <div :style="hasCityName === false ? 'height: calc(100% - 60px)' : 'height: 100%'">
-  <div v-if="hasCityName === false" class="weather flex h-full flex-col justify-center items-center font-sans" >
+  <div v-if="hasCityName === false" class="weather flex h-full flex-col justify-center items-center" >
     <div>
       <img alt="Weather logo" src="../assets/weather-anim.gif" class="block m-auto h-64 w-auto">
       <h1 class="text-5xl font-black text-teal-700 uppercase">Vue-Weather</h1>
