@@ -1,10 +1,12 @@
 <template>
-    <div class="h-1/3 flex justify-center">
-        <div v-for="(forecast, index) in daysDataArray" :key="`forecast-${index}`" class="m-2">
-            <p class="text-2xl">{{ convertToDay(forecast.dt * 1000)}}</p>
-            <p class="text-lg">At 15:00 UTC</p>
-            <p class="text-2xl font-black">{{parseFloat(forecast.main.temp).toFixed(1)}}°</p>
-            <p class="text-xl italic">{{forecast.weather[0].description}}</p>
+    <div class="h-1/3 text-center">
+        <div class="flex justify-center">
+            <div v-for="(forecast, index) in daysDataArray" :key="`forecast-${index}`" class="m-2 mt-20 text-left">
+                <p class="text-2xl">{{ convertToDay(forecast.dt * 1000)}}</p>
+                <p class="text-lg">At 15:00 UTC</p>
+                <p class="text-2xl font-black">{{parseFloat(forecast.main.temp).toFixed(1)}}°</p>
+                <p class="text-xl italic">{{forecast.weather[0].description}}</p>
+            </div>
         </div>
     </div>
 </template>

@@ -30,6 +30,9 @@
     </div>
   </div>
   <div v-else class="h-full bg-gray-600">
+    <button 
+        @click="hasCityName = false, cityName = '', $store.state.minifyNavbar = false"
+        class="py-2 px-3 bg-teal-500 hover:bg-teal-700 rounded-lg text-white font-bold absolute mt-2 ml-2"> New search</button>
     <current-weather :weatherData="this.currentWeatherData"></current-weather>
     <forecast :forecastData="this.forecastData"></forecast>
   </div>
@@ -73,6 +76,8 @@ export default {
           this.forecastData = res.data;
           this.$store.state.minifyNavbar = true; 
           this.hasCityName = true;
+
+          this.hasError === true ? this.hasError = false : '';
         })
         .catch(error => {
           console.log(error);
