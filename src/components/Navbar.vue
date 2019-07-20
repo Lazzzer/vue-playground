@@ -12,7 +12,7 @@
             </router-link>
         </div>
         <div v-else class="w-full p-4 flex justify-end items-center absolute">
-            <router-link to="/" class="text-lg font-bold text-gray-800 hover:text-gray-100"><i class="fas fa-home text-3xl"></i></router-link>
+            <router-link to="/" class="py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold shadow-md"><i class="fas fa-home"></i> Home</router-link>
         </div>
     </div>
     

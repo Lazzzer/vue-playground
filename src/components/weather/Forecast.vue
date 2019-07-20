@@ -1,13 +1,21 @@
 <template>
     <div class="h-1/3 text-center">
+    <div>
+        <h2 class="inline-block mt-12 text-3xl font-black text-teal-500 uppercase">5 days forecast at 15:00 UTC</h2>
         <div class="flex justify-center">
-            <div v-for="(forecast, index) in daysDataArray" :key="`forecast-${index}`" class="m-2 mt-20 text-left">
-                <p class="text-2xl">{{ convertToDay(forecast.dt * 1000)}}</p>
-                <p class="text-lg">At 15:00 UTC</p>
-                <p class="text-2xl font-black">{{parseFloat(forecast.main.temp).toFixed(1)}}°</p>
-                <p class="text-xl italic">{{forecast.weather[0].description}}</p>
+            <div v-for="(forecast, index) in daysDataArray" :key="`forecast-${index}`" class="m-2 mt-2 w-32 bg-white text-center rounded-lg shadow-lg">
+                <div class="px-4 pt-3 w-full h-2/3 bg-gray-500 rounded-t-lg flex items-center">
+                    <img :src="`http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`" alt="forecast image">
+                </div>
+                <div class="text-center h-1/3 px-4 pb-3 rounded-b-lg">
+                    <p class="mt-1 text-lg font-bold text-black">{{ convertToDay(forecast.dt * 1000)}}</p>
+                    <p class="mb-1 -mt-1 text-xl font-black text-teal-500">{{parseFloat(forecast.main.temp).toFixed(1)}}°</p>
+                </div>
+                
             </div>
         </div>
+    </div>
+        
     </div>
 </template>
 

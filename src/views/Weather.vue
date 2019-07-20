@@ -29,10 +29,10 @@
         </div> 
     </div>
   </div>
-  <div v-else class="h-full bg-gray-600">
+  <div v-else class="h-full bg-gray-200">
     <button 
         @click="hasCityName = false, cityName = '', $store.state.minifyNavbar = false"
-        class="py-2 px-3 bg-teal-500 hover:bg-teal-700 rounded-lg text-white font-bold absolute mt-2 ml-2"> New search</button>
+        class="py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold absolute mt-4 ml-4 shadow-md"> <i class="fas fa-search-plus"></i> New search</button>
     <current-weather :weatherData="this.currentWeatherData"></current-weather>
     <forecast :forecastData="this.forecastData"></forecast>
   </div>

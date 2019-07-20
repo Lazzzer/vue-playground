@@ -282,6 +282,7 @@ module.exports = {
 			auto: 'auto',
 			...theme('spacing'),
 			'1/3': '33%',
+			'1/2': '50%',
 			'2/3': '66%',
 			full: '100%',
 			screen: '100vh'
