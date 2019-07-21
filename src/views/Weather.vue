@@ -1,6 +1,7 @@
 <template>
 <div :style="hasCityName === false ? 'height: calc(100% - 60px)' : 'height: 100%'">
-  <div v-if="hasCityName === false" class="weather flex h-full flex-col justify-center items-center" >
+  <transition name="fade" mode="out-in">
+  <div key=1 v-if="hasCityName === false" class="weather flex h-full flex-col justify-center items-center" >
     <div>
       <img alt="Weather logo" src="../assets/weather-anim.gif" class="block m-auto h-64 w-auto">
       <h1 class="text-5xl font-black text-teal-700 uppercase">Vue-Weather</h1>
@@ -29,13 +30,14 @@
         </div> 
     </div>
   </div>
-  <div v-else class="h-full bg-gray-200">
+  <div key-2 v-else class="h-full bg-gray-200 animated">
     <button 
         @click="hasCityName = false, cityName = '', $store.state.minifyNavbar = false"
         class="py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold absolute mt-4 ml-4 shadow-md"> <i class="fas fa-search-plus"></i> New search</button>
     <current-weather :weatherData="this.currentWeatherData"></current-weather>
     <forecast :forecastData="this.forecastData"></forecast>
   </div>
+  </transition>
 </div>
 </template>
 
@@ -89,3 +91,18 @@ export default {
   },
 }
 </script>
+
+<style>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
+  }
+
+</style>
