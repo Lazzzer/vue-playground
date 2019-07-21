@@ -3,7 +3,7 @@
   <transition name="fade" mode="out-in">
   <div key=1 v-if="hasCityName === false" class="weather flex h-full flex-col justify-center items-center" >
     <div>
-      <img alt="Weather logo" src="../assets/weather-anim.gif" class="block m-auto h-64 w-auto">
+      <lottie :options="logoOptions" :height="256" :width="256"/>
       <h1 class="text-5xl font-black text-teal-700 uppercase">Vue-Weather</h1>
         <form @submit.prevent class="relative w-full max-w-sm">
           <div class=" flex items-center">
@@ -43,16 +43,25 @@
 
 <script>
 import axios from 'axios';
+import lottie from 'vue-lottie';
+  import * as animationData from '../assets/weatherLogo.json';
+
 import CurrentWeather from '../components/weather/CurrentWeather.vue';
 import Forecast from '../components/weather/Forecast.vue';
 
 export default {
   components:{
     CurrentWeather,
-    Forecast
+    Forecast,
+    lottie
   },
   data() {
     return {
+      logoOptions: {
+        animationData: animationData.default,
+        loop: false
+      },
+      animationSpeed: 3,
       hasCityName: false,
       cityName: '',
       hasError: false,

@@ -1,9 +1,10 @@
 <template>
     <div class="h-2/3 flex flex-col justify-center items-center" :class="backColor">
         <div class="slideInDown animated">
-            <div class="mt-24 text-center border rounded-lg px-6 py-8 shadow-lg bg-white w-80 ">
-                <h1 class="text-5xl font-black uppercase text-teal-500">{{this.weatherData.name}}</h1>
-                <img alt="Weather logo" :src="getLogoUrl(this.logo)" class="block m-auto h-64 w-auto mt-4">
+            <div class="mt-20 text-center border rounded-lg px-6 py-8 shadow-lg bg-white w-80 ">
+                <h1 class="text-5xl font-black uppercase text-teal-500 mb-4">{{this.weatherData.name}}</h1>
+                <lottie :options="logoOptions" :height="256" :width="256"/>
+                <!-- <img alt="Weather logo" :src="getLogoUrl(this.logo)" class="block m-auto h-64 w-auto"> -->
                 <p class="mt-2 text-xl italic ">It's actually <span class="text-teal-500 font-bold">{{parseFloat(this.weatherData.main.temp).toFixed(1)}}°</span> in <span class="font-bold">{{this.weatherData.name}}</span> with {{ this.weatherData.weather[0].description }}.</p>
                 <div class="mt-8 flex flex-col text-left w-48 mx-auto">
                     <p class="text-teal-500 font-bold text-sm">Time: <span class="text-black font-normal italic"> {{getLocalHour(this.weatherData.dt * 1000)}} </span></p>
@@ -19,13 +20,25 @@
 </template>
 
 <script>
+import lottie from 'vue-lottie';
+import * as animationRain from '../../assets/Rain.json';
+import * as animationLogo from '../../assets/weatherLogo.json';
+
 export default {
+    components:{
+        lottie
+    },
     props:{
         weatherData : Object
     },
     data() {
         return {
-            logo: 'weather-anim.gif',
+            logoOptions: {
+                animationData: null,
+                loop: true
+            },
+            animationSpeed: 1,
+            logo: 'Clear.gif',
             foreColor: 'text-teal-500',
             backColor: 'bg-white',
         }
@@ -55,15 +68,27 @@ export default {
             }
         }
     },
-    mounted(){
+    created(){
+
+        console.log(this.logoOptions.animationData);
 
         this.changeBackColor();
 
         if(this.weatherData.weather[0].id > 700 && this.weatherData.weather[0].id < 800 ){
-            this.logo = 'Atmosphere.gif';
+            this.logo = 'Atmosphere.json';
         }else{
-            this.logo = this.weatherData.weather[0].main + '.gif';
+            this.logo = this.weatherData.weather[0].main + '.json';
         }
+
+        if(this.logo === 'Rain.json' || this.logo === 'Drizzle.json'){
+            this.logoOptions.animationData = animationRain.default;
+        }
+        else{
+            this.logoOptions.animationData = animationLogo.default;
+        }
+
+        console.log(this.logoOptions.animationData);
+
     }
 }
 </script>

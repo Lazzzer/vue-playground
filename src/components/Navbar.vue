@@ -12,8 +12,8 @@
                     </svg>Pokédex
                 </router-link>
             </div>
-            <div key=2 v-else class="w-full p-4 flex justify-end items-center absolute">
-                <router-link to="/" class="py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold shadow-md"><i class="fas fa-home"></i> Home</router-link>
+            <div key=2 v-else class="w-full px-4 pt-4 flex justify-end items-center absolute">
+                <router-link to="/" class="p-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold shadow-md"><i class="fas fa-home"></i> Home</router-link>
             </div>
         </transition>
     </div>
