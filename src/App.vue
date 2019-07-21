@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="h-screen font-sans">
+  <div id="app" class="h-screen font-sans overflow-hidden">
     <Navbar></Navbar>
     <router-view/>
   </div>

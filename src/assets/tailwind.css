@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "~animate.css/animate.css";
+
+@import "./vue-sequential-entrance.css";
+
 .router-link-exact-active{
     @apply text-teal-500
 }

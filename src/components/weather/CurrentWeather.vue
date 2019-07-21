@@ -1,17 +1,20 @@
 <template>
     <div class="h-2/3 flex flex-col justify-center items-center" :class="backColor">
-        <div class="mt-24 text-center border rounded-lg px-6 py-8 shadow-lg bg-white w-80">
-            <h1 class="text-5xl font-black uppercase text-teal-500">{{this.weatherData.name}}</h1>
-            <img alt="Weather logo" :src="getLogoUrl(this.logo)" class="block m-auto h-64 w-auto mt-4">
-            <p class="mt-2 text-xl italic ">It's actually <span class="text-teal-500 font-bold">{{parseFloat(this.weatherData.main.temp).toFixed(1)}}°</span> in <span class="font-bold">{{this.weatherData.name}}</span> with {{ this.weatherData.weather[0].description }}.</p>
-            <div class="mt-8 flex flex-col text-left w-48 mx-auto">
-                <p class="text-teal-500 font-bold text-sm">Time: <span class="text-black font-normal italic"> {{getLocalHour(this.weatherData.dt * 1000)}} </span></p>
-                <p class="text-teal-500 font-bold text-sm">Temp° Min: <span class="text-black font-normal italic mr-2"> {{parseFloat(this.weatherData.main.temp_min).toFixed(1)}}° </span>Max: <span class="text-black font-normal italic">{{parseFloat(this.weatherData.main.temp_max).toFixed(1)}}°</span></p>
-                <p class="text-teal-500 font-bold text-sm">Pressure: <span class="text-black font-normal italic"> {{parseFloat(this.weatherData.main.pressure).toFixed(1)}} hPa </span></p>
-                <p class="text-teal-500 font-bold text-sm">Humidity: <span class="text-black font-normal italic"> {{parseFloat(this.weatherData.main.humidity).toFixed(1)}}% </span></p>
-                <p class="text-teal-500 font-bold text-sm">Wind Speed: <span class="text-black font-normal italic"> {{parseFloat(this.weatherData.wind.speed * 3.6).toFixed(1)}} km/h </span></p>
-            </div>     
+        <div class="slideInDown animated">
+            <div class="mt-24 text-center border rounded-lg px-6 py-8 shadow-lg bg-white w-80 ">
+                <h1 class="text-5xl font-black uppercase text-teal-500">{{this.weatherData.name}}</h1>
+                <img alt="Weather logo" :src="getLogoUrl(this.logo)" class="block m-auto h-64 w-auto mt-4">
+                <p class="mt-2 text-xl italic ">It's actually <span class="text-teal-500 font-bold">{{parseFloat(this.weatherData.main.temp).toFixed(1)}}°</span> in <span class="font-bold">{{this.weatherData.name}}</span> with {{ this.weatherData.weather[0].description }}.</p>
+                <div class="mt-8 flex flex-col text-left w-48 mx-auto">
+                    <p class="text-teal-500 font-bold text-sm">Time: <span class="text-black font-normal italic"> {{getLocalHour(this.weatherData.dt * 1000)}} </span></p>
+                    <p class="text-teal-500 font-bold text-sm">Temp° Min: <span class="text-black font-normal italic mr-2"> {{parseFloat(this.weatherData.main.temp_min).toFixed(1)}}° </span>Max: <span class="text-black font-normal italic">{{parseFloat(this.weatherData.main.temp_max).toFixed(1)}}°</span></p>
+                    <p class="text-teal-500 font-bold text-sm">Pressure: <span class="text-black font-normal italic"> {{parseFloat(this.weatherData.main.pressure).toFixed(1)}} hPa </span></p>
+                    <p class="text-teal-500 font-bold text-sm">Humidity: <span class="text-black font-normal italic"> {{parseFloat(this.weatherData.main.humidity).toFixed(1)}}% </span></p>
+                    <p class="text-teal-500 font-bold text-sm">Wind Speed: <span class="text-black font-normal italic"> {{parseFloat(this.weatherData.wind.speed * 3.6).toFixed(1)}} km/h </span></p>
+                </div>     
+            </div>
         </div>
+        
     </div>
 </template>
 
