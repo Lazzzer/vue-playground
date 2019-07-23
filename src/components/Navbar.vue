@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="font-sans">
         <transition name="fade" mode="out-in">
-            <div key=1 v-if="!isMinified" class="w-full p-4 shadow-md flex justify-center items-center">
-                <router-link to="/" class="text-lg font-bold text-gray-800"><i class="fas fa-home text-2xl"></i> Home</router-link>
-                <router-link to="/weather" class="ml-3 text-lg font-bold text-gray-800"><i class="fas fa-cloud-sun text-2xl"></i> Weather</router-link>
-                <router-link to="/pokemon" class="ml-3 text-lg font-bold text-gray-800 flex align-middle">
+            <div key=1 v-if="!isMinified" class="w-full py-4 shadow-md flex justify-center items-center">
+                <router-link to="/" class="text-lg font-bold text-gray-800 no-underline"><i class="fas fa-home text-2xl"></i> Home</router-link>
+                <router-link to="/weather" class="ml-3 text-lg font-bold text-gray-800 no-underline"><i class="fas fa-cloud-sun text-2xl"></i> Weather</router-link>
+                <router-link to="/pokemon" class="ml-3 text-lg font-bold text-gray-800 no-underline flex align-middle">
                     <svg 
                         :class="[this.$route.path === '/pokemon' ? 'poke-active' : 'poke-inactive', 'h-6 w-auto inline-block mr-1']" 
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
@@ -12,8 +12,8 @@
                     </svg>Pokédex
                 </router-link>
             </div>
-            <div key=2 v-else class="w-full px-4 pt-4 flex justify-end items-center absolute">
-                <router-link to="/" class="p-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold shadow-md"><i class="fas fa-home"></i> Home</router-link>
+            <div key=2 v-else class="w-full flex justify-end items-center absolute">
+                <router-link to="/" class="z-10 p-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold shadow-md mt-4 mr-6 sm:mr-4 no-underline"><i class="fas fa-home"></i> Home</router-link>
             </div>
         </transition>
     </div>

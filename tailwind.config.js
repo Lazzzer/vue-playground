@@ -146,7 +146,8 @@ module.exports = {
 			'48': '12rem',
 			'56': '14rem',
 			'64': '16rem',
-			'80': '40rem'
+			'72': '20rem',
+			'80': '37rem'
 		},
 		backgroundColor: theme => theme('colors'),
 		backgroundPosition: {
@@ -226,6 +227,7 @@ module.exports = {
 		},
 		fontFamily: {
 			sans: [
+				'Noto Sans',
 				'-apple-system',
 				'BlinkMacSystemFont',
 				'"Segoe UI"',

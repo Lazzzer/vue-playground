@@ -1,16 +1,16 @@
 <template>
 <div :style="hasCityName === false ? 'height: calc(100% - 60px)' : 'height: 100%'">
   <transition name="fade" mode="out-in">
-  <div key=1 v-if="hasCityName === false" class="weather flex h-full flex-col justify-center items-center" >
-    <div>
+  <div key=1 v-if="hasCityName === false" class="-mt-20 sm:-mt-0weather flex h-full flex-col justify-center items-center" >
+    <div class="text-center">
       <lottie :options="logoOptions" :height="256" :width="256"/>
-      <h1 class="text-5xl font-black text-teal-700 uppercase">Vue-Weather</h1>
+      <h1 class="text-4xl sm:text-5xl font-black text-teal-700 uppercase">Vue-Weather</h1>
         <form @submit.prevent class="relative w-full max-w-sm">
           <div class=" flex items-center">
             <input v-model="cityName" @keydown.enter.prevent @keyup.enter="onSubmit"
-              class="bg-white outline-none focus:border-teal-500 border-2 border-gray-300 rounded-l-lg py-2 px-4 block w-full appearance-none leading-normal text-lg text-teal-800 font-bold" 
+              class="bg-white outline-none focus:border-teal-500 border-2 border-gray-300 rounded-l-lg py-2 px-4 block w-full appearance-none leading-normal text-base sm:text-lg text-teal-800 font-bold" 
               type="text" placeholder="Enter the name of your city...">
-            <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 border-2 text-white py-2 px-4 rounded-r-lg text-lg appearance-none outline-none" 
+            <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 border-2 text-white py-2 px-4 rounded-r-lg text-base sm:text-lg appearance-none outline-none" 
                     type="button" @click="onSubmit">
               <i class="fas fa-search"></i>
             </button>
@@ -33,7 +33,7 @@
   <div key-2 v-else class="h-full bg-gray-200 animated">
     <button 
         @click="hasCityName = false, cityName = '', $store.state.minifyNavbar = false"
-        class="py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold absolute mt-4 ml-4 shadow-md"> <i class="fas fa-search-plus"></i> New search</button>
+        class="z-10 py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold absolute mt-4 ml-6 sm:ml-4 shadow-md"> <i class="fas fa-search-plus"></i> New search</button>
     <current-weather :weatherData="this.currentWeatherData"></current-weather>
     <forecast :forecastData="this.forecastData"></forecast>
   </div>
