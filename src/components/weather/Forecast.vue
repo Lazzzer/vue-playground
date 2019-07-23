@@ -2,7 +2,7 @@
     <div class="h-1/3 text-center">
             <div>
                 <h2 class="inline-block mt-12 text-3xl font-black text-teal-500 uppercase animated fadeIn delay-1s">5 days forecast at 15:00 UTC</h2>
-                <sequential-entrance tag="div" fromBottom delay="400" firstDelay="400" contentClass="flex justify-center">
+                <sequential-entrance tag="div" fromBottom delay="400" firstDelay="200" contentClass="flex justify-center">
                     <div v-for="(forecast, index) in daysDataArray" :key="`forecast-${index}`" class="m-2 mt-2 w-32 bg-white text-center rounded-lg shadow-lg">
                         <div class="px-4 pt-3 w-full h-2/3 bg-gray-500 rounded-t-lg flex items-center">
                             <img :src="`http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`" alt="forecast image">
