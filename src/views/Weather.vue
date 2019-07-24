@@ -16,7 +16,7 @@
             </button>
           </div>
         </form>
-        <div v-if="hasError" class="absolute mt-2 error-message text-sm sm:ml-4">
+        <div v-if="hasError" class="absolute mt-2 error-message text-sm">
           <div class="bg-red-100 border border-red-400 text-red-700 px-2 sm:px-4 text-sm sm:text-base py-2 rounded relative flex" role="alert">
             <strong class="font-bold mr-2">Outch ! </strong>
             <span class="block sm:inline mr-2">The searched city is not found...</span>
