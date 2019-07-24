@@ -72,7 +72,7 @@ export default {
   methods: {
     onSubmit () {
       //console.log(this.cityName)
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=5930ff12f2a177a4379b45eb1959f053&units=metric`)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=${process.env.VUE_APP_OPENWEATHER_API_KEY}&units=metric`)
         .then(res => {
           //console.log(res);
           this.currentWeatherData = res.data;
@@ -81,7 +81,7 @@ export default {
           //console.log(error);
           this.hasError = true;
         });
-        axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&APPID=5930ff12f2a177a4379b45eb1959f053&units=metric`)
+        axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&APPID=${process.env.VUE_APP_OPENWEATHER_API_KEY}&units=metric`)
         .then(res => {
           //console.log(res);
           this.forecastData = res.data;
