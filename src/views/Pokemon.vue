@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is an Pokemon page</h1>
+    <h1>Coming soon!</h1>
   </div>
 </template>

@@ -71,19 +71,19 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log(this.cityName)
+      //console.log(this.cityName)
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=5930ff12f2a177a4379b45eb1959f053&units=metric`)
         .then(res => {
-          console.log(res);
+          //console.log(res);
           this.currentWeatherData = res.data;
         })
         .catch(error => {
-          console.log(error);
+          //console.log(error);
           this.hasError = true;
         });
         axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&APPID=5930ff12f2a177a4379b45eb1959f053&units=metric`)
         .then(res => {
-          console.log(res);
+          //console.log(res);
           this.forecastData = res.data;
           this.$store.state.minifyNavbar = true; 
           this.hasCityName = true;
@@ -91,7 +91,7 @@ export default {
           this.hasError === true ? this.hasError = false : '';
         })
         .catch(error => {
-          console.log(error);
+          //console.log(error);
         })
     }
   },

@@ -1,11 +1,11 @@
 <template>
     <div class="h-2/3 flex flex-col justify-center items-center" :class="backColor">
         <div class="fadeInDown animated w-72 sm:w-80">
-            <div class="mt-16 md:mt-20 text-center border rounded-lg px-3 sm:px-6 py-6 sm:py-8 shadow-lg bg-white">
-                <h1 class="text-2xl sm:text-4xl md:text-5xl font-black uppercase text-teal-500 mb-4">{{this.weatherData.name}}</h1>
+            <div class="mt-16 md:mt-20 text-center border rounded-lg px-3 sm:px-6 py-6 sm:py-8 shadow-lg bg-white weatherCard">
+                <h1 class="text-2xl sm:text-4xl md:text-5xl font-black uppercase text-teal-500 mb-4 weatherTitle">{{this.weatherData.name}}</h1>
                 <lottie :options="logoOptions" :height="256" :width="256" class="screenSize"/>
                 <p class="mt-2 text-sm sm:text-lg italic ">It's actually <span class="text-teal-500 font-bold">{{parseFloat(this.weatherData.main.temp).toFixed(1)}}°</span> in <span class="font-bold">{{this.weatherData.name}}</span> with {{ this.weatherData.weather[0].description }}.</p>
-                <div class="mt-8 flex flex-col text-left w-48 mx-auto">
+                <div class="mt-8 flex flex-col text-left w-48 mx-auto weatherText">
                     <p class="text-teal-500 font-bold text-sm">Time: <span class="text-black font-normal italic"> {{getLocalHour((this.weatherData.dt + this.weatherData.timezone) * 1000)}} </span></p>
                     <p class="text-teal-500 font-bold text-sm">Temp° Min: <span class="text-black font-normal italic mr-2"> {{parseFloat(this.weatherData.main.temp_min).toFixed(1)}}° </span>Max: <span class="text-black font-normal italic">{{parseFloat(this.weatherData.main.temp_max).toFixed(1)}}°</span></p>
                     <p class="text-teal-500 font-bold text-sm">Pressure: <span class="text-black font-normal italic"> {{parseFloat(this.weatherData.main.pressure).toFixed(1)}} hPa </span></p>
