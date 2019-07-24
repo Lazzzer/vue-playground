@@ -6,7 +6,7 @@
                     <div v-for="(forecast, index) in daysDataArray" :key="`forecast-${index}`" 
                         :class="[index === 0 ? 'ml-4' : '', 'm-2 mt-4 sm:mt-2 w-24 sm:w-32 bg-white text-center rounded-lg shadow-lg h-32 sm:h-40 flex-shrink-0']">
                         <div :class="[ forecast.weather[0].id === 800 ? 'bg-blue-300' : 'bg-gray-500','sm:px-4 sm:pt-3  rounded-t-lg flex items-center']">
-                            <img :src="`http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`" alt="forecast image" class="h-20 w-auto mx-auto sm:h-24">
+                            <img :src="`https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`" alt="forecast image" class="h-20 w-auto mx-auto sm:h-24">
                         </div>
                         <div class="text-center sm:px-4 rounded-b-lg">
                             <p class=" text-base sm:text-lg font-bold text-black">{{ convertToDay(forecast.dt * 1000)}}</p>
