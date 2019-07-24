@@ -1,7 +1,7 @@
 <template>
     <div class="h-1/3 text-center">
             <div>
-                <h2 class="weatherForcast inline-block mt-10 sm:mt-12 text-base sm:text-3xl font-black text-teal-500 uppercase animated fadeInUp delay-1s">5 days forecast at {{ this.localTime}} local time</h2>
+                <h2 class="weatherForcast inline-block mt-10 sm:mt-12 text-base sm:text-2xl xl:text-3xl font-black text-teal-500 uppercase animated fadeInUp delay-1s">5 days forecast at {{ this.localTime}} local time</h2>
                 <sequential-entrance tag="div" fromBottom delay="250" firstDelay="400" contentClass="flex justify-start md:justify-center scrolling overflow-x-auto overflow-y-hidden pb-8">
                     <div v-for="(forecast, index) in daysDataArray" :key="`forecast-${index}`" 
                         :class="[index === 0 ? 'ml-4' : '', 'm-2 mt-4 sm:mt-2 w-24 sm:w-32 bg-white text-center rounded-lg shadow-lg h-32 sm:h-40 flex-shrink-0']">
