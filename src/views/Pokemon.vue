@@ -28,14 +28,14 @@
       <div class="mr-4 sm:mr-6">
         <span class="block italic text-red-500 font-black text-base text-center">#{{computedSecondtId}}</span>
         <h2 class="text-gray-800 font-black text-sm sm:text-base text-center">{{pokemonList[computedSecondtId - 1].name.toUpperCase()}}</h2>
-        <div :class="[computedSecondtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'w-24 h-24 sm:w-56 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer flex items-center']">
+        <div :class="[computedSecondtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'w-24 h-24 sm:w-56 sm:h-56 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer flex items-center']">
           <img class="w-48 h-auto mx-auto" :src="getPokeImg(computedSecondtId)" alt="pokemon">
         </div>
       </div>
       <div>
         <span class="block italic text-red-500 font-black text-base text-center">#{{computedThirdtId}}</span>
         <h2 class="text-gray-800 font-black text-sm sm:text-base text-center">{{pokemonList[computedThirdtId - 1].name.toUpperCase()}}</h2>
-        <div :class="[computedThirdtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'w-24 h-24 sm:w-56 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer flex items-center']">
+        <div :class="[computedThirdtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'w-24 h-24 sm:w-56 sm:h-56 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer flex items-center']">
           <img class="w-48 h-auto mx-auto" :src="getPokeImg(computedThirdtId)" alt="pokemon">
         </div>
       </div>
