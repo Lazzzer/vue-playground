@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex flex-col justify-center items-center">
+  <div v-if="this.pokemonList" class="h-screen flex flex-col justify-center items-center">
     <svg 
         class="h-16 w-auto inline-block fill-current text-red-800 " 
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
@@ -10,7 +10,7 @@
       <div class=" flex items-center">
         <input v-model="pokemonName" @keydown.enter.prevent @keyup.enter="onSubmit"
           class="bg-white outline-none focus:border-red-500 border-2 border-gray-300 rounded-l-lg py-2 px-4 block w-full appearance-none leading-normal text-base sm:text-lg text-red-800 font-bold" 
-          type="text" placeholder="Search a Pokémon">
+          type="text" placeholder="Search a Pokémon by name or ID">
         <button class="flex-shrink-0 bg-red-500 hover:bg-red-700 border-red-500 hover:border-red-700 border-2 text-white py-2 px-4 rounded-r-lg text-base sm:text-lg appearance-none outline-none" 
                 type="button" @click="onSubmit">
           <i class="fas fa-search"></i>
@@ -68,6 +68,7 @@
 import axios from 'axios';
 import VueSlider from 'vue-slider-component';
 import '../assets/antd.css';
+import { setInterval } from 'timers';
 
 export default {
   components: {
@@ -75,7 +76,7 @@ export default {
   },
   data() {
     return {
-      pokemonList: [],
+      pokemonList: null,
       sliderMaxValue: 807,
       sliderCurrentValue: 1,
       sliderMarks: {
@@ -170,8 +171,11 @@ export default {
           }
         },
       },
-      pokemonName: '',
-      selectedPokemon: Object,
+      pokemonName: null,
+      counter: 0,
+      requestCount: 0,
+      canFetch: true,
+      searchedPokemon: Object,
       firstId: 0,
       secondId: 1,
       thirdId: 2
@@ -208,6 +212,7 @@ export default {
   },
   methods: {
     fetchPokemonList() {
+      this.requestCount++;
       axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=${this.sliderMaxValue}`)
         .then(res => {
           console.log(res);
@@ -219,21 +224,52 @@ export default {
           console.log(err);
         });
     },
-    onSubmit() {
+    fetchPokemonData() {
+      this.requestCount++;
       axios.get(`https://pokeapi.co/api/v2/pokemon/${this.pokemonName.toLowerCase()}`)
         .then(res => {
           console.log(res);
-          this.selectedPokemon = res.data;
+          this.searchedPokemon = res.data;
+          this.sliderCurrentValue = this.searchedPokemon.id;
+          localStorage.setItem(this.pokemonName.toLowerCase(), JSON.stringify(res.data));
         })
         .catch(err => {
-          console.log(err);
+          this.pokemonName = 'Pokémon not found...';
         })
+    },
+    onSubmit() {
+      if (localStorage.getItem(this.pokemonName.toLowerCase())) {
+        this.searchedPokemon = JSON.parse(localStorage.getItem(this.pokemonName.toLowerCase()));
+        this.sliderCurrentValue = this.searchedPokemon.id;
+      } else {
+        if (this.canFetch) {
+          this.fetchPokemonData();
+        } else {
+          this.pokemonName = 'Too much requests!';
+        }
+      }
+    },
+    verifyRequestNumbers() {
+      setInterval(() => {
+        this.counter++;
+        console.log(this.counter);
+        console.log(this.requestCount);
+        if (this.requestCount >= 95 && this.counter > 58) {
+          this.canFetch = false;
+        }
+        if (this.counter === 60) {
+          this.counter = 1;
+          this.requestCount = 0;
+          this.canFetch = true;
+        }
+      }, 1000)
     },
     getPokeImg(id) {
       return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + id + '.png';
     }
   },
   mounted() {
+    this.verifyRequestNumbers();
     if (localStorage.getItem('pokemonList')) {
       try {
         this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
