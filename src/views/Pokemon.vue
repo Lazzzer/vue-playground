@@ -18,31 +18,33 @@
       </div>
     </form>
     <div class="w-full h-72 flex items-center justify-center">
-      <div class="mr-6 card w-56 h-56 bg-gray-200 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0">
-        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#1</h2>
-        <img class="-mt-3 w-40 h-auto mx-auto my-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="pokemon">
-        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">Bulbizarre</h2>
+      <div :class="[computedFirstId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'mr-6 card w-56 h-56  shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer']">
+        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#{{computedFirstId}}</h2>
+        <img class="-mt-3 w-40 h-auto mx-auto my-auto" :src="getPokeImg(computedFirstId)" alt="pokemon">
+        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">{{pokemonList[computedFirstId - 1].name.toUpperCase()}}</h2>
       </div>
-      <div class="mr-6 card w-56 h-56 bg-gray-200 shadow-lg hover:shadow-2xl rounded-full">
-        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#2</h2>
-        <img class="-mt-3 w-40 h-auto mx-auto my-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" alt="pokemon">
-        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">Herbizarre</h2>
+      <div :class="[computedSecondtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300' : '' , 'mr-6 card w-56 h-56 bg-gray-200 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer']">
+        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#{{computedSecondtId}}</h2>
+        <img class="-mt-3 w-40 h-auto mx-auto my-auto" :src="getPokeImg(computedSecondtId)" alt="pokemon">
+        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">{{pokemonList[computedSecondtId - 1].name.toUpperCase()}}</h2>
       </div>
-      <div class="card w-56 h-56 bg-gray-200 shadow-lg hover:shadow-2xl rounded-full">
-        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#3</h2>
-        <img class="-mt-3 w-40 h-auto mx-auto my-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" alt="pokemon">
-        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">Florizarre</h2>
+      <div :class="[computedThirdtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300' : '' , 'mr-6 card w-56 h-56 bg-gray-200 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer']">
+        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#{{computedThirdtId}}</h2>
+        <img class="-mt-3 w-40 h-auto mx-auto my-auto" :src="getPokeImg(computedThirdtId)" alt="pokemon">
+        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">{{pokemonList[computedThirdtId - 1].name.toUpperCase()}}</h2>
       </div>
     </div>
 
     <div class="w-82 h-32 mt-10 mb-20">
       <div>value: {{ sliderCurrentValue }}</div>
-      <vue-slider 
+      <vue-slider
         v-model="sliderCurrentValue"
+        :lazy="true"
         :min="1"
         :max="sliderMaxValue"
         :marks="sliderMarks"
         :process="false"
+        :dotSize="20"
         :railStyle="{
           height: '10px',
         }"
@@ -67,8 +69,40 @@ export default {
       sliderCurrentValue: 1,
       sliderMarks: [100, 200, 300, 400, 500, 600, 700, 800],
       pokemonName: '',
-      selectedPokemon: Object
+      selectedPokemon: Object,
+      firstId: 0,
+      secondId: 1,
+      thirdId: 2
     }
+  },
+  computed: {
+    computedFirstId: function () {
+      if (this.sliderCurrentValue === 1) {
+        return 1;
+      } else if (this.sliderCurrentValue === this.sliderMaxValue) {
+        return this.sliderMaxValue - 2;
+      } else {
+        return this.sliderCurrentValue - 1;
+      }
+    },
+    computedSecondtId: function () {
+      if (this.sliderCurrentValue === 1) {
+        return 2;
+      } else if (this.sliderCurrentValue === this.sliderMaxValue) {
+        return this.sliderMaxValue - 1;
+      } else {
+        return this.sliderCurrentValue;
+      }
+    },
+    computedThirdtId: function () {
+      if (this.sliderCurrentValue === 1) {
+        return 3;
+      } else if (this.sliderCurrentValue === this.sliderMaxValue) {
+        return this.sliderMaxValue;
+      } else {
+        return this.sliderCurrentValue + 1;
+      }
+    },
   },
   methods: {
     fetchPokemonList() {
@@ -92,6 +126,9 @@ export default {
         .catch(err => {
           console.log(err);
         })
+    },
+    getPokeImg(id) {
+      return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + id + '.png';
     }
   },
   mounted() {
