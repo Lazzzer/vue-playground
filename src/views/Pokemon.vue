@@ -252,8 +252,8 @@ export default {
     verifyRequestNumbers() {
       setInterval(() => {
         this.counter++;
-        console.log(this.counter);
-        console.log(this.requestCount);
+        // console.log(this.counter);
+        // console.log(this.requestCount);
         if (this.requestCount >= 95 && this.counter > 58) {
           this.canFetch = false;
         }
