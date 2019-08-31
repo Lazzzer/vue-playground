@@ -67,7 +67,7 @@
 <script>
 import axios from 'axios';
 import VueSlider from 'vue-slider-component';
-import 'vue-slider-component/theme/antd.css';
+import '../assets/antd.css';
 
 export default {
   components: {
