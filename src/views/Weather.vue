@@ -33,7 +33,8 @@
   <div key-2 v-else class="h-full bg-gray-200 animated">
     <button 
         @click="hasCityName = false, cityName = '', $store.state.minifyNavbar = false"
-        class="z-10 py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold absolute mt-4 ml-6 sm:ml-4 shadow-md"> <i class="fas fa-search-plus"></i> New search</button>
+        class="z-10 py-2 px-3 bg-white hover:bg-gray-200 rounded-lg text-teal-500 font-bold absolute mt-4 ml-6 sm:ml-4 shadow-md"> <i class="fas fa-search-plus"></i> New search
+    </button>
     <current-weather :weatherData="this.currentWeatherData"></current-weather>
     <forecast :forecastData="this.forecastData"></forecast>
   </div>
@@ -44,13 +45,13 @@
 <script>
 import axios from 'axios';
 import lottie from 'vue-lottie';
-  import * as animationData from '../assets/weatherLogo.json';
+import * as animationData from '../assets/weatherLogo.json';
 
 import CurrentWeather from '../components/weather/CurrentWeather.vue';
 import Forecast from '../components/weather/Forecast.vue';
 
 export default {
-  components:{
+  components: {
     CurrentWeather,
     Forecast,
     lottie
@@ -70,9 +71,9 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    onSubmit() {
       //console.log(this.cityName)
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=${process.env.VUE_APP_OPENWEATHER_API_KEY}&units=metric`)
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=${process.env.VUE_APP_OPENWEATHER_API_KEY}&units=metric`)
         .then(res => {
           //console.log(res);
           this.currentWeatherData = res.data;
@@ -81,11 +82,11 @@ export default {
           //console.log(error);
           this.hasError = true;
         });
-        axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&APPID=${process.env.VUE_APP_OPENWEATHER_API_KEY}&units=metric`)
+      axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.cityName}&APPID=${process.env.VUE_APP_OPENWEATHER_API_KEY}&units=metric`)
         .then(res => {
           //console.log(res);
           this.forecastData = res.data;
-          this.$store.state.minifyNavbar = true; 
+          this.$store.state.minifyNavbar = true;
           this.hasCityName = true;
 
           this.hasError === true ? this.hasError = false : '';
@@ -96,7 +97,7 @@ export default {
     }
   },
   destroyed() {
-    this.$store.state.minifyNavbar = false; 
+    this.$store.state.minifyNavbar = false;
   },
 }
 </script>
