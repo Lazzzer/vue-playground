@@ -21,6 +21,10 @@ body{
     @apply text-teal-500
 }
 
+.vue-slider-mark-label{
+    @apply font-bold text-gray-800 text-base;
+}
+
 @media screen and (max-width: 640px){
     .screenSize{
         width: 150px !important;

@@ -18,25 +18,29 @@
       </div>
     </form>
     <div class="w-full h-72 flex items-center justify-center">
-      <div :class="[computedFirstId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'mr-6 card w-56 h-56  shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer']">
-        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#{{computedFirstId}}</h2>
-        <img class="-mt-3 w-40 h-auto mx-auto my-auto" :src="getPokeImg(computedFirstId)" alt="pokemon">
-        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">{{pokemonList[computedFirstId - 1].name.toUpperCase()}}</h2>
+      <div class="mr-6">
+        <span class="block italic text-red-500 font-black text-base text-center">#{{computedFirstId}}</span>
+        <h2 class="text-gray-800 font-black text-base text-center">{{pokemonList[computedFirstId - 1].name.toUpperCase()}}</h2>
+        <div :class="[computedFirstId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'w-56 h-56 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer flex items-center']">
+          <img class="w-48 h-auto mx-auto" :src="getPokeImg(computedFirstId)" alt="pokemon">
+        </div>
       </div>
-      <div :class="[computedSecondtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300' : '' , 'mr-6 card w-56 h-56 bg-gray-200 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer']">
-        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#{{computedSecondtId}}</h2>
-        <img class="-mt-3 w-40 h-auto mx-auto my-auto" :src="getPokeImg(computedSecondtId)" alt="pokemon">
-        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">{{pokemonList[computedSecondtId - 1].name.toUpperCase()}}</h2>
+      <div class="mr-6">
+        <span class="block italic text-red-500 font-black text-base text-center">#{{computedSecondtId}}</span>
+        <h2 class="text-gray-800 font-black text-base text-center">{{pokemonList[computedSecondtId - 1].name.toUpperCase()}}</h2>
+        <div :class="[computedSecondtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'w-56 h-56 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer flex items-center']">
+          <img class="w-48 h-auto mx-auto" :src="getPokeImg(computedSecondtId)" alt="pokemon">
+        </div>
       </div>
-      <div :class="[computedThirdtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300' : '' , 'mr-6 card w-56 h-56 bg-gray-200 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer']">
-        <h2 class="mt-4 text-gray-800 font-black text-base text-center">#{{computedThirdtId}}</h2>
-        <img class="-mt-3 w-40 h-auto mx-auto my-auto" :src="getPokeImg(computedThirdtId)" alt="pokemon">
-        <h2 class="-mt-4 text-gray-800 font-black text-base text-center">{{pokemonList[computedThirdtId - 1].name.toUpperCase()}}</h2>
+      <div>
+        <span class="block italic text-red-500 font-black text-base text-center">#{{computedThirdtId}}</span>
+        <h2 class="text-gray-800 font-black text-base text-center">{{pokemonList[computedThirdtId - 1].name.toUpperCase()}}</h2>
+        <div :class="[computedThirdtId === sliderCurrentValue ? 'border-2 border-red-400 bg-red-300 ' : 'bg-gray-200' , 'w-56 h-56 shadow-lg hover:shadow-2xl rounded-full flex-shrink-0 cursor-pointer flex items-center']">
+          <img class="w-48 h-auto mx-auto" :src="getPokeImg(computedThirdtId)" alt="pokemon">
+        </div>
       </div>
     </div>
-
     <div class="w-82 h-32 mt-10 mb-20">
-      <div>value: {{ sliderCurrentValue }}</div>
       <vue-slider
         v-model="sliderCurrentValue"
         :lazy="true"
@@ -45,6 +49,13 @@
         :marks="sliderMarks"
         :process="false"
         :dotSize="20"
+        :dotOptions="{
+        
+        }"
+        :dotStyle="{
+          backgroundColor: '#fed7d7',
+          border: '2px solid #c53030',
+        }"
         :railStyle="{
           height: '10px',
         }"
@@ -67,7 +78,98 @@ export default {
       pokemonList: [],
       sliderMaxValue: 807,
       sliderCurrentValue: 1,
-      sliderMarks: [100, 200, 300, 400, 500, 600, 700, 800],
+      sliderMarks: {
+        '1': {
+          label: '1',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '100': {
+          label: '100',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '200': {
+          label: '200',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '300': {
+          label: '300',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '400': {
+          label: '400',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '500': {
+          label: '500',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '600': {
+          label: '600',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '700': {
+          label: '700',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+        '807': {
+          label: '807',
+          style: {
+            width: '20px',
+            height: '20px',
+            display: 'block',
+            backgroundColor: '#a0aec0',
+            transform: 'translate(-8px, -5px)'
+          }
+        },
+      },
       pokemonName: '',
       selectedPokemon: Object,
       firstId: 0,
